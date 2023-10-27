@@ -1,5 +1,5 @@
 <template>
-    <div id="vue3-vite-app"  />
+    <div id="react-vite-app"/>
 </template>
 
 <script setup lang="ts">
@@ -9,11 +9,11 @@ import { registerMicroApps, start } from 'qiankun';
 const loading = ref(false);
 registerMicroApps([
     {
-        name: 'vue3-vite-app',
-        entry: '//localhost:5174/',
-        container: '#vue3-vite-app',
-        activeRule: '/vue3-vite-app',
-        
+        name: 'react-vite-app',
+        entry: '//localhost:5175/',
+        container: '#react-vite-app',
+        activeRule: '/react-vite-app',
+       
     }
 ]);
 onMounted(() => {

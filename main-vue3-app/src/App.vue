@@ -4,7 +4,9 @@
     <router-link to="/vue2-webpack-app">wepback+vue2App</router-link> |
     <router-link to="/vue3-vite-app">vite+vue3App</router-link> |
     <router-link to="/vue3-webpack-app">wepback+vue3App</router-link> |
-    <router-link to="/react-webpack-app">wepback+reactApp</router-link> 
+    <router-link to="/react-webpack-app">wepback+reactApp</router-link> |
+    <router-link to="/react-vite-app">vite+reactApp</router-link> 
+
 
 
   </nav>

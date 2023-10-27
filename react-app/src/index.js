@@ -10,6 +10,7 @@ let root = null;
 function render (props) {
     const { container } = props;
     root = root || ReactDOM.createRoot(container ? container.querySelector("#root") : document.getElementById("root") );
+    console.log(root)
     root.render(
         <BrowserRouter basename={window.__POWERED_BY_QIANKUN__ ? "/react-webpack-app" : "/"}>
             <React.StrictMode>

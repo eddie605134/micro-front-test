@@ -1,5 +1,5 @@
 <template>
-    <div id="react-webpack-app"/>
+    <div id="react-webpack-app" />
 </template>
 
 <script setup lang="ts">
@@ -13,7 +13,9 @@ registerMicroApps([
         entry: '//localhost:3000/',
         container: '#react-webpack-app',
         activeRule: '/react-webpack-app',
-       
+        props: {
+
+        }
     }
 ]);
 onMounted(() => {

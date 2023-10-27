@@ -26,6 +26,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/react-webpack-app/:chapters*',
     name: 'react-webpack-app',
     component: () => import('../views/ReactWebpack.vue')
+  },
+  {
+    path: '/react-vite-app/:chapters*',
+    name: 'react-vite-app',
+    component: () => import('../views/ReactVite.vue')
   }
 ]
 
