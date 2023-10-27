@@ -14,7 +14,7 @@ registerMicroApps([
         container: '#react-webpack-app',
         activeRule: '/react-webpack-app',
         props: {
-
+            msg:'react-webpack-app'
         }
     }
 ]);
