@@ -1,8 +1,8 @@
 import { create } from 'zustand';
 
 interface SharedState {
-  userId: string | null;
-  counter: number;
+  // userId: string | null;
+  vrCounter: number;
 }
 
 interface GlobalState {
@@ -15,8 +15,7 @@ interface GlobalState {
 
 export const useGlobalStore = create<GlobalState>((set, get) => ({
   sharedState: {
-    userId: null,
-    counter: 0,
+    vrCounter: 0,
   },
   globalActions: null,
 
@@ -30,12 +29,12 @@ export const useGlobalStore = create<GlobalState>((set, get) => ({
 
   // 增加計數器並通知主應用
   incrementCounter: () => {
-    const currentCounter = get().sharedState.counter + 1;
+    const currentCounter = get().sharedState.vrCounter + 1;
     set((state) => ({
-      sharedState: { ...state.sharedState, counter: currentCounter },
+      sharedState: { ...state.sharedState, vrCounter: currentCounter },
     }));
     get().globalActions?.setGlobalState({
-      sharedState: { counter: currentCounter },
+      sharedState: { vrCounter: currentCounter },
     });
   },
 }));

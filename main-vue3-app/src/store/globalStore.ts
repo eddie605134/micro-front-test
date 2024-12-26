@@ -3,14 +3,14 @@ import { defineStore } from 'pinia'
 export const useGlobalStore = defineStore('global', {
   state: () => ({
     counter: 0,
-    userId: ''
+    vvCounter: 0
   }),
   actions: {
     setCounter(newCounter: number) {
       this.counter = newCounter
     },
-    setUserId(newUserId: string) {
-      this.userId = newUserId
+    setVVCounter(newCounter: number) {
+      this.vvCounter = newCounter
     }
   }
 })

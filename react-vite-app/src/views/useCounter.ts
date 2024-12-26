@@ -39,7 +39,7 @@ function useCounter(actions: any) {
     }
 
     const currentState = actions.getGlobalState();
-    const updatedCounter = (currentState?.counter || 0) + 1;
+    const updatedCounter = (currentState.sharedState.counter || 0) + 1;
 
     // 更新共享狀態
     actions.setGlobalState({

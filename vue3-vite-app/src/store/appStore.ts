@@ -4,6 +4,7 @@ export const useAppStore = defineStore('app', {
   state: () => ({
     theme: 'light',
     user: null,
+    vvCounter: 0,
   }),
   actions: {
     setTheme(theme: string) {
