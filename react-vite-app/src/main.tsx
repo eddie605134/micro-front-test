@@ -1,49 +1,63 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import { BrowserRouter } from 'react-router-dom'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper';
+import App from './App';
+import { BrowserRouter } from 'react-router-dom';
 
-import { renderWithQiankun, qiankunWindow } from 'vite-plugin-qiankun/dist/helper'
-let root:any;
+let root: any;
 
-const render = (container:HTMLElement | undefined) => {
-  // 如果是在主应用的环境下就挂载主应用的节点，否则挂载到本地
-  console.log(container)
-  // @ts-ignore
-  root = root || ReactDOM.createRoot(container ? container.querySelector("#root") : document.getElementById("root") );
+const render = (props: { container?: HTMLElement; actions?: any }) => {
+  const { container, actions } = props;
+
+  root =
+    root ||
+    ReactDOM.createRoot(
+      container
+        ? container.querySelector('#root')
+        : document.getElementById('root')
+    );
+
+  // 使用 actions 初始化共享狀態
+  if (actions) {
+    console.log('[React 子應用] 接收到 actions:', actions);
+
+    // 註冊全局狀態監聽
+    actions.onGlobalStateChange((state: any, prev: any) => {
+      console.log('[React 子應用] main狀態變化:', state, prev);
+    });
+  } else {
+    console.warn('[React 子應用] 未傳遞 actions');
+  }
+
   root.render(
-      <BrowserRouter basename={qiankunWindow.__POWERED_BY_QIANKUN__ ? "/react-vite-app" : "/"}>
-          <React.StrictMode>
-              <App />
-          </React.StrictMode>
-      </BrowserRouter>
+    <BrowserRouter
+      basename={qiankunWindow.__POWERED_BY_QIANKUN__ ? '/react-vite-app' : '/'}
+    >
+      <React.StrictMode>
+        <App actions={actions} />
+      </React.StrictMode>
+    </BrowserRouter>
   );
+};
+
+renderWithQiankun({
+  bootstrap: async () => {
+    console.log('[React 子應用] Bootstrap');
+    return Promise.resolve();
+  },
+  mount: async (props) => {
+    console.log('[React 子應用] Mount', props);
+    render(props);
+    return Promise.resolve();
+  },
+  unmount: async () => {
+    console.log('[React 子應用] Unmount');
+    root?.unmount();
+    root = null;
+    return Promise.resolve();
+  },
+});
+
+if (!qiankunWindow.__POWERED_BY_QIANKUN__) {
+  render({});
 }
-
-const initQianKun = () => {
-  // @ts-ignore
-  renderWithQiankun({
-    // 当前应用在主应用中的生命周期
-    // 文档 https://qiankun.umijs.org/zh/guide/getting-started#
-
-    mount(props) {
-      render(props.container)
-      //  可以通过props读取主应用的参数：msg
-      // 监听主应用传值
-      // props.onGlobalStateChange((res) => {
-      //   console.log(res.count)
-      // })
-    },
-    bootstrap() { },
-    unmount() {
-    root.unmount();
-    // console.log(root.unmount)
-
-      root = null
-     },
-  })
-}
-
-
-// 判断当前应用是否在主应用中
-qiankunWindow.__POWERED_BY_QIANKUN__ ? initQianKun() : render(undefined)

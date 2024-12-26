@@ -1,18 +1,21 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-   主应用
+    <img alt="Vue logo" src="../assets/logo.png" />
+    <SharedCounter />
+    <h1>主應用</h1>
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
-
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-    HelloWorld
-  }
-})
+<script setup lang="ts">
+import SharedCounter from "@/components/SharedCounter.vue";
 </script>
+
+<style scoped>
+.home {
+  text-align: center;
+}
+
+h1 {
+  color: #42b983;
+}
+</style>

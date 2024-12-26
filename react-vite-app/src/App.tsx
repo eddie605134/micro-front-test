@@ -1,10 +1,9 @@
 import Router from './router/index'
-import React from 'react';
 import './App.css';
-function App() {
+function App({ actions }: { actions: any }) {
   return (
     <div>
-      <Router></Router>
+      <Router actions={actions}></Router>
     </div>
   );
 }
