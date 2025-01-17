@@ -33,8 +33,8 @@ export const useGlobalStore = create<GlobalState>((set, get) => ({
     set((state) => ({
       sharedState: { ...state.sharedState, vrCounter: currentCounter },
     }));
-    get().globalActions?.setGlobalState({
-      sharedState: { vrCounter: currentCounter },
-    });
+    // get().globalActions?.setGlobalState({
+    //   sharedState: { vrCounter: currentCounter },
+    // });
   },
 }));

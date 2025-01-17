@@ -22,9 +22,9 @@ const render = (props: { container?: HTMLElement; actions?: any }) => {
     console.log('[React 子應用] 接收到 actions:', actions);
 
     // 註冊全局狀態監聽
-    actions.onGlobalStateChange((state: any, prev: any) => {
-      console.log('[React 子應用] main狀態變化:', state, prev);
-    });
+    // actions.onGlobalStateChange((state: any, prev: any) => {
+    //   console.log('[React 子應用] main狀態變化:', state, prev);
+    // });
   } else {
     console.warn('[React 子應用] 未傳遞 actions');
   }

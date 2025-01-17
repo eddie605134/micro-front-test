@@ -21,7 +21,6 @@ function Home({ actions }: { actions: any }) {
         setCounter(state.counter); // 更新本地狀態
       }
     }, true);
-    console.log('123123123');
   }, []);
 
   const increment = () => {
@@ -38,6 +37,7 @@ function Home({ actions }: { actions: any }) {
 
     // 更新共享狀態
     // console.log('[React 子應用] actions.getGlobalState();:', actions.getGlobalState());
+    console.log('updatedCounter', updatedCounter);
     actions.setGlobalState({
       counter: updatedCounter,
     });
